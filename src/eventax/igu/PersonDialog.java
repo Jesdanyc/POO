@@ -54,6 +54,8 @@ public class PersonDialog extends JDialog {
         add(new JLabel("From:"));
         add(fromField);
         add(new JLabel("To:"));
+        add(fromField);
+        add(new JLabel("Ciclo Academico:"));
         add(toField);
         add(addButton);
         add(delButton);

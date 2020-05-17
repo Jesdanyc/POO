@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/DELL%20i5/Documents/NetBeansProjects/eventax/src/eventax/EVENTAX.java</file>
+            <file>file:/D:/POO/POO/src/eventax/entities/Person.java</file>
+            <file>file:/D:/POO/POO/src/eventax/data/PersonData.java</file>
+            <file>file:/D:/POO/POO/src/eventax/igu/PersonDialog.java</file>
+            <file>file:/D:/POO/POO/src/eventax/EVENTAX.java</file>
+            <file>file:/D:/POO/POO/src/eventax/igu/MainFrame.java</file>
         </group>
     </open-files>
 </project-private>

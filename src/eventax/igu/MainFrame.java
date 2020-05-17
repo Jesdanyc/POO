@@ -22,7 +22,7 @@ public class MainFrame extends JFrame implements ActionListener{
         // menu
         JMenuBar mb = new JMenuBar();
         JMenu m1 = new JMenu("File");
-
+        JMenu m2 = new JMenu("Asistencia");
         m11 = new JMenuItem("New File");
         m11.addActionListener(this);
         m1.add(m11);
@@ -31,6 +31,7 @@ public class MainFrame extends JFrame implements ActionListener{
         m1.add(m19);
 
         mb.add(m1);
+        mb.add(m2);
         // setLayout(null); // null setBounds(x,y, w,h)
         add(BorderLayout.NORTH, mb);
     }
