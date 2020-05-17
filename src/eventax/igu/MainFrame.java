@@ -9,6 +9,7 @@ public class MainFrame extends JFrame implements ActionListener{
     private static final long serialVersionUID = 1L;
     JMenuItem m11;
     JMenuItem m19;
+    JMenuItem m22;
 
     public MainFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,15 +30,15 @@ public class MainFrame extends JFrame implements ActionListener{
         m19 = new JMenuItem("Exit");
         m19.addActionListener(this);
         m1.add(m19);
-
         mb.add(m1);
+        JMenu m2 = new JMenu("Asistencia");
+        mb.add(m2);
         // setLayout(null); // null setBounds(x,y, w,h)
         add(BorderLayout.NORTH, mb);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-       if (e.getSource() == m11) {
-            System.out.println("Menu 1.1 has press ");
+       if (e.getSource() == m11) {//Agregar estudiantes
             PersonDialog personDialog = new PersonDialog();
             personDialog.setVisible(true);
         }

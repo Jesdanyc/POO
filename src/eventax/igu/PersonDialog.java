@@ -12,7 +12,9 @@ import eventax.entities.Person;
 
 public class PersonDialog extends JDialog {
      private static final long serialVersionUID = 1L;
+    JTextField DNIField = new JTextField(" ", 30);
     JTextField fromField = new JTextField(" ", 30);
+    JTextField cetField = new JTextField(" ", 30);
     JTextField toField = new JTextField(30);
     JButton goButton = new JButton("Exit");
     JButton addButton = new JButton("Add");
@@ -23,7 +25,7 @@ public class PersonDialog extends JDialog {
 
     public PersonDialog() {
         setSize(500, 500);
-        setTitle("Person Dialog");
+        setTitle("Agregar Alumnos");
         setLocationRelativeTo(null);
 
         initForm();
@@ -36,24 +38,28 @@ public class PersonDialog extends JDialog {
         while (modelo.getRowCount() > 0)
             modelo.removeRow(0);
         for (Person d : lis) {
-            modelo.addRow(new Object[] { d.getId(), d.getName(), d.getSex() });
+            modelo.addRow(new Object[] { d.getId(),d.getDNI(), d.getName(),d.getCicle(), d.getSex() });
         }
     }
 
     void initForm() {
 
         jTable = new JTable();
-        jTable.setModel(new DefaultTableModel(new Object[][] {
+        jTable.setModel(new DefaultTableModel(new Object[][][] {
                 // { 1, 2 },
                 // { 3, 4 }
-        }, new String[] { "ID", "Name", "Sex" }));
+        }, new String[] { "ID","DNI", "Nombre y Apellidos","Ciclo Academico","Sex"}));
         jSP = new JScrollPane();
         jSP.setViewportView(jTable);
 
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-        add(new JLabel("From:"));
+        add(new JLabel("DNI"));
+        add(DNIField);
+        add(new JLabel("Nombres y Apellidos:"));
         add(fromField);
-        add(new JLabel("To:"));
+        add(new JLabel("Ciclo Academico:"));
+        add(cetField);
+        add(new JLabel("Sex:"));
         add(toField);
         add(addButton);
         add(delButton);
@@ -84,7 +90,9 @@ public class PersonDialog extends JDialog {
     void addPerson(ActionEvent e) {
         System.out.println(" addButton has press ");
         Person d = new Person();
+        d.setDNI(DNIField.getText());
         d.setName(fromField.getText());
+        d.setCicle(cetField.getText());
         d.setSex(toField.getText());
         personData.create(d);
         paintTable();
