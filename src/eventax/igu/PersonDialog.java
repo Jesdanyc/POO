@@ -12,18 +12,21 @@ import eventax.entities.Person;
 
 public class PersonDialog extends JDialog {
      private static final long serialVersionUID = 1L;
-    JTextField fromField = new JTextField(" ", 30);
-    JTextField toField = new JTextField(30);
-    JButton goButton = new JButton("Exit");
-    JButton addButton = new JButton("Add");
-    JButton delButton = new JButton("Remove");
+    JTextField dniField = new JTextField(30);
+    JTextField nameField = new JTextField(30);
+    JTextField cicleField = new JTextField(30);
+    JTextField sexField = new JTextField(30);
+    JButton goButton = new JButton("Salir");
+    JButton addButton = new JButton("Añadir");
+    JButton delButton = new JButton("Eliminar");
+ //   JButton saveButton = new JButton("Eliminar");
     JTable jTable;
     JScrollPane jSP;
     PersonData personData = new PersonData();
 
     public PersonDialog() {
-        setSize(500, 500);
-        setTitle("Person Dialog");
+        setSize(600, 400);
+        setTitle("Nueva Clase");
         setLocationRelativeTo(null);
 
         initForm();
@@ -36,7 +39,7 @@ public class PersonDialog extends JDialog {
         while (modelo.getRowCount() > 0)
             modelo.removeRow(0);
         for (Person d : lis) {
-            modelo.addRow(new Object[] { d.getId(), d.getName(), d.getSex() });
+            modelo.addRow(new Object[] { d.getId(),d.getDni(), d.getName(), d.getCicle(),d.getSex() });
         }
     }
 
@@ -46,17 +49,22 @@ public class PersonDialog extends JDialog {
         jTable.setModel(new DefaultTableModel(new Object[][] {
                 // { 1, 2 },
                 // { 3, 4 }
-        }, new String[] { "ID", "Name", "Sex" }));
+        }, new String[] { "ID", "DNI", "Nombres y Apellidos","Ciclo Academico","Sexo" }));
         jSP = new JScrollPane();
         jSP.setViewportView(jTable);
 
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-        add(new JLabel("From:"));
-        add(fromField);
-        add(new JLabel("To:"));
-        add(toField);
+        add(new JLabel("DNI:"));
+        add(dniField);
+        add(new JLabel("Nombres y Apellidos:"));
+        add(nameField);
+        add(new JLabel("Ciclo Academico:"));
+        add(cicleField);
+        add(new JLabel("Sexo:"));
+        add(sexField);
         add(addButton);
         add(delButton);
+       // add(saveButton);
         add(jSP);
         add(goButton);
 
@@ -77,18 +85,30 @@ public class PersonDialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 delPerson(e);
             }
-        });
-
+        }); 
     }
 
-    void addPerson(ActionEvent e) {
-        System.out.println(" addButton has press ");
+    void addPerson(ActionEvent event) {
+        if (dniField.getText().equals(""))
+        JOptionPane.showMessageDialog(this, "Falta ingresar el DNI");
+        else if (this.nameField.getText().equals(""))
+         JOptionPane.showMessageDialog(this, "Falta ingresar los Nombres y apellidos");
+        else if (this.cicleField.getText().equals(""))
+         JOptionPane.showMessageDialog(this, "Falta ingresar el Ciclo Academico");
+        else if (this.sexField.getText().equals(""))
+         JOptionPane.showMessageDialog(this, "Falta ingresar el Sexo");
+        
+       
+        else{
+        JOptionPane.showMessageDialog(this, "Añadido correctamente");
         Person d = new Person();
-        d.setName(fromField.getText());
-        d.setSex(toField.getText());
+        d.setDni(dniField.getText());
+        d.setName(nameField.getText());
+        d.setCicle(cicleField.getText());
+        d.setSex(sexField.getText());
         personData.create(d);
         paintTable();
-    }
+    }}
 
     void delPerson(ActionEvent e) {
         if (jTable.getSelectedRow() != -1) {
@@ -100,6 +120,5 @@ public class PersonDialog extends JDialog {
             personData.delete(id);
             paintTable();
         }
-    }
+    }    
 }
-
