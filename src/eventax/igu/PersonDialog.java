@@ -13,19 +13,20 @@ import eventax.entities.Person;
 public class PersonDialog extends JDialog {
      private static final long serialVersionUID = 1L;
     JTextField dniField = new JTextField(30);
-    JTextField nameField = new JTextField(" ", 30);
+    JTextField nameField = new JTextField(30);
     JTextField cicleField = new JTextField(30);
     JTextField sexField = new JTextField(30);
     JButton goButton = new JButton("Salir");
     JButton addButton = new JButton("Añadir");
     JButton delButton = new JButton("Eliminar");
+ //   JButton saveButton = new JButton("Eliminar");
     JTable jTable;
     JScrollPane jSP;
     PersonData personData = new PersonData();
 
     public PersonDialog() {
-        setSize(500, 500);
-        setTitle("Person Dialog");
+        setSize(600, 400);
+        setTitle("Nueva Clase");
         setLocationRelativeTo(null);
 
         initForm();
@@ -63,6 +64,7 @@ public class PersonDialog extends JDialog {
         add(sexField);
         add(addButton);
         add(delButton);
+       // add(saveButton);
         add(jSP);
         add(goButton);
 
@@ -83,12 +85,22 @@ public class PersonDialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 delPerson(e);
             }
-        });
-
+        }); 
     }
 
-    void addPerson(ActionEvent e) {
-        System.out.println(" addButton has press ");
+    void addPerson(ActionEvent event) {
+        if (dniField.getText().equals(""))
+        JOptionPane.showMessageDialog(this, "Falta ingresar el DNI");
+        else if (this.nameField.getText().equals(""))
+         JOptionPane.showMessageDialog(this, "Falta ingresar los Nombres y apellidos");
+        else if (this.cicleField.getText().equals(""))
+         JOptionPane.showMessageDialog(this, "Falta ingresar el Ciclo Academico");
+        else if (this.sexField.getText().equals(""))
+         JOptionPane.showMessageDialog(this, "Falta ingresar el Sexo");
+        
+       
+        else{
+        JOptionPane.showMessageDialog(this, "Añadido correctamente");
         Person d = new Person();
         d.setDni(dniField.getText());
         d.setName(nameField.getText());
@@ -96,7 +108,7 @@ public class PersonDialog extends JDialog {
         d.setSex(sexField.getText());
         personData.create(d);
         paintTable();
-    }
+    }}
 
     void delPerson(ActionEvent e) {
         if (jTable.getSelectedRow() != -1) {
@@ -108,6 +120,5 @@ public class PersonDialog extends JDialog {
             personData.delete(id);
             paintTable();
         }
-    }
+    }    
 }
-

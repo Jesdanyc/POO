@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import eventax.entities.Person;
+import eventax.igu.PersonDialog;
+import java.sql.Savepoint;
 
 public class PersonData {
     // falto desc
     // si ok
     static List<Person> lis = new CopyOnWriteArrayList<Person>();
     static int id=0;
+    static int add=0;
 
     public PersonData() {
     }
@@ -33,4 +36,5 @@ public class PersonData {
             }
         }
     }
+    
 }

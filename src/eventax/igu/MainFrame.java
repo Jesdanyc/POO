@@ -15,8 +15,8 @@ public class MainFrame extends JFrame implements ActionListener{
 
     public MainFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 800);
-        setTitle("Main Frame");
+        setSize(600, 600);
+        setTitle("Registro de Asistencia ");
         setLocationRelativeTo(null);
         initMenu();
     }
@@ -24,24 +24,26 @@ public class MainFrame extends JFrame implements ActionListener{
     void initMenu() {
         // menu
         JMenuBar mb = new JMenuBar();
-        JMenu m1 = new JMenu("File");
+      
+        JMenu m1 = new JMenu("Archivo");
         JMenu m2 = new JMenu("Asistencia");
-        m11 = new JMenuItem("New File");
+        m11 = new JMenuItem("Nueva Clase");
         m11.addActionListener(this);
         m1.add(m11);
-        m19 = new JMenuItem("Exit");
+        m19 = new JMenuItem("Salir");
         m19.addActionListener(this);
         m1.add(m19);
         m21 = new JMenuItem("Ciclo Academico");
         m21.addActionListener(this);
         m2.add(m21);
-        m29 = new JMenuItem("Salir");
+        m29 = new JMenuItem("0bservaciones");
         m29.addActionListener(this);
         m2.add(m29);
         mb.add(m1);
         mb.add(m2);
         // setLayout(null); // null setBounds(x,y, w,h)
         add(BorderLayout.NORTH, mb);
+       
     }
     @Override 
     public void actionPerformed(ActionEvent e) {
@@ -55,11 +57,11 @@ public class MainFrame extends JFrame implements ActionListener{
             System.exit(0);
         }
     }
-    public void actionPerformed2(ActionEvent a) {
+    public void actionPerformed1(ActionEvent a) {
        if (a.getSource() == m21) {
             System.out.println("Menu 2.1 has press ");
-            PersonDialog personDialog = new PersonDialog();
-            personDialog.setVisible(true);
+            PersonCicle personCicle = new PersonCicle();
+            personCicle.setVisible(true);
         }
         if (a.getSource() == m29) {
             System.out.println("By ");
